@@ -1,7 +1,6 @@
 import socket
 import json
 import time
-import threading
 
 def test_client(city):
     """Test client that connects to the weather service"""
