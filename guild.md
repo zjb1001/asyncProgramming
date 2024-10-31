@@ -1,51 +1,5 @@
 # Understanding and Mastering Async Programming
 
-## Running the Demo
-### Setup and Execution
-1. Open two terminal windows/tabs
-2. In the first terminal, run the server:
-   ```bash
-   python src/sync_weather_service.py
-   ```
-3. In the second terminal, run the client:
-   ```bash
-   python src/sync_test_client.py
-   ```
-
-### Monitoring and Analysis
-1. **Terminal Output**
-   - Server terminal shows incoming connections
-   - Client terminal displays:
-     * Weather data for each city
-     * Total processing time
-   - Watch how requests are processed sequentially
-
-2. **Performance Metrics to Watch**
-   - Total execution time (~10 seconds for 5 cities)
-   - Time per request (approximately 2 seconds each)
-   - Sequential nature of processing (each request waits for previous)
-
-3. **System Resource Usage**
-   - Use `top` or Activity Monitor to observe:
-     * CPU usage (mostly idle during waits)
-     * Memory usage (minimal)
-     * Thread count (single thread)
-
-### Expected Results
-- Each request takes ~2 seconds (simulated API delay)
-- Total time scales linearly with number of requests
-- Example output:
-  ```
-  Received weather for London: {"city": "London", "temperature": 20, "conditions": "sunny"}
-  Received weather for Paris: {"city": "Paris", "temperature": 20, "conditions": "sunny"}
-  Received weather for New York: {"city": "New York", "temperature": 20, "conditions": "sunny"}
-  Received weather for Tokyo: {"city": "Tokyo", "temperature": 20, "conditions": "sunny"}
-  Received weather for Berlin: {"city": "Berlin", "temperature": 20, "conditions": "sunny"}
-  
-  Processed 5 requests in 10.15 seconds
-  ```
-
-
 ## 1. Traditional Synchronous Programming
 ### The Basics
 In traditional synchronous programming, operations are executed sequentially, one after another. Each operation blocks the execution until it completes.
@@ -146,6 +100,51 @@ This example clearly demonstrates all four problems with synchronous code:
      * Total processing time: 20 seconds
    - Processing time grows linearly with each new client
    - System becomes unusable with many concurrent users
+
+## Running the Demo
+### Setup and Execution
+1. Open two terminal windows/tabs
+2. In the first terminal, run the server:
+   ```bash
+   python src/sync_weather_service.py
+   ```
+3. In the second terminal, run the client:
+   ```bash
+   python src/sync_test_client.py
+   ```
+
+### Monitoring and Analysis
+1. **Terminal Output**
+   - Server terminal shows incoming connections
+   - Client terminal displays:
+     * Weather data for each city
+     * Total processing time
+   - Watch how requests are processed sequentially
+
+2. **Performance Metrics to Watch**
+   - Total execution time (~10 seconds for 5 cities)
+   - Time per request (approximately 2 seconds each)
+   - Sequential nature of processing (each request waits for previous)
+
+3. **System Resource Usage**
+   - Use `top` or Activity Monitor to observe:
+     * CPU usage (mostly idle during waits)
+     * Memory usage (minimal)
+     * Thread count (single thread)
+
+### Expected Results
+- Each request takes ~2 seconds (simulated API delay)
+- Total time scales linearly with number of requests
+- Example output:
+  ```
+  Received weather for London: {"city": "London", "temperature": 20, "conditions": "sunny"}
+  Received weather for Paris: {"city": "Paris", "temperature": 20, "conditions": "sunny"}
+  Received weather for New York: {"city": "New York", "temperature": 20, "conditions": "sunny"}
+  Received weather for Tokyo: {"city": "Tokyo", "temperature": 20, "conditions": "sunny"}
+  Received weather for Berlin: {"city": "Berlin", "temperature": 20, "conditions": "sunny"}
+  
+  Processed 5 requests in 10.15 seconds
+  ```
 
 **Performance Impact Demonstration:**
 ```python
